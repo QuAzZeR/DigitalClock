@@ -1,8 +1,10 @@
 <script setup lang="ts">
-const time = ref("asdfasdf asf as fasd fsd fsad fsadf ");
+const time = ref("");
+const date = ref("");
 const x = "12345";
 let intervalId: any = null;
 
+var week = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 updateTime();
 function updateTime() {
   var cd = new Date();
@@ -12,6 +14,14 @@ function updateTime() {
     zeroPadding(cd.getMinutes(), 2) +
     ":" +
     zeroPadding(cd.getSeconds(), 2);
+  date.value =
+    zeroPadding(cd.getFullYear(), 4) +
+    "-" +
+    zeroPadding(cd.getMonth() + 1, 2) +
+    "-" +
+    zeroPadding(cd.getDate(), 2) +
+    " " +
+    week[cd.getDay()];
 }
 
 function zeroPadding(num: number, digit: number) {
@@ -32,13 +42,14 @@ onBeforeUnmount(() => {
 
 <template>
   <div id="clock">
+    <p class="date">{{ date }}</p>
     <p class="time">{{ time }}</p>
   </div>
 </template>
 
 <style>
 body {
-  background: #000000;
+  background: #01012b;
 }
 p {
   margin: 0;
@@ -51,14 +62,18 @@ p {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  color: #daf6ff;
+  color: #05d9e8;
   text-shadow:
     0 0 20px rgba(10, 175, 230, 1),
     0 0 20px rgba(10, 175, 230, 0);
 }
+.date {
+  letter-spacing: 0.1em;
+  font-size: 84px;
+}
 .time {
   letter-spacing: 0.05em;
-  font-size: 160px;
+  font-size: 320px;
   padding: 5px 0;
 }
 </style>
