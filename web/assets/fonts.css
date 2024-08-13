@@ -1,7 +1,12 @@
 @font-face {
-  font-family: "DSDigital";
-  src: url("~assets/fonts/DS-DIGIT.TTF") format("ttf");
+  font-family: "digital-deco";
+  src: url("./fonts/digital-deco.regular.ttf");
 
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family: "digital-deco";
 }
